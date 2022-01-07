@@ -4,69 +4,52 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Formulario php y html</title>
+  <title>Validación de formularios PHP</title>
 </head>
 <body>
-  <h1>Formulario</h1>
-  <form action="" method="POST" enctype="multipart/form-data">
-    <p>
-      <label for="nombre">Nombre:</label>
-      <input type="text" name="nombre" autofocus disabled placeholder="nombre">
-    </p>
-    <p>
-      <label for="apellido">Apellido:</label>
-      <input type="text" name="apellido" maxlength="5" minlength="3" pattern="[A-Z ]+" required value="mete tu apellllido">
-    </p>
-    <p>
-      <label for="boton">Botón:</label>
-      <input type="button" name="boton" value="cliclame">
-    </p>
-    <p>
-      <label for="sexo">Sexo:</label>
-      Hombre<input type="checkbox" name="sexo" value="hombre">
-      Mujer<input type="checkbox" name="sexo" value="mujer" checked>
-    </p>
-    <p>
-      <label for="color">Color:</label>
-      <input type="color" name="color" value="">
-    </p>
-    <p>
-      <label for="date">Fecha:</label>
-      <input type="date" name="date" value="">
-    </p>
-    <p>
-      <label for="correo">Correo:</label>
-      <input type="email" name="correo" value="">
-    </p>
-    <p>
-      <label for="archivo">Archivo:</label>
-      <input type="file" name="archivo" multiple value="">
-    </p>
-    <p>
-      <label for="numero">Numero:</label>
-      <input type="number" name="numero" value="">
-    </p>
-    <p>
-      <label for="password">Contraseña:</label>
-      <input type="password" name="password" value="">
-    </p>
-    <p>
-      <label for="continente">Continente:</label>
-      América<input type="radio" name="continente" value="América">
-      Europa<input type="radio" name="continente" value="Europa">
-      Asia<input type="radio" name="continente" value="Asia">
-    </p>
-    <p>
-      <label for="web">Página web</label>
-      <input type="url" name="web" value="">
-    </p>
-    <textarea name="" id="" cols="30" rows="10"></textarea><br>
-    Peliculas
-    <select name="peliculas" id="">
-      <option value="Spiderman">Spiderman</option>
-      <option value="Superman">Superman</option>
-      <option value="Batman">Batman</option>
-    </select><br>
+  <h1>Validar formularios en PHP</h1>
+
+  <?php
+    if(isset($_GET['error'])){
+      $error = $_GET['error'];
+
+      if($error == 'faltan_valores'){
+        echo '<strong style="color:red">Introduce todos los valores en todos los campos</strong>';
+      }
+      if($error == 'nombre'){
+        echo '<strong style="color:red">Introduce bien el nombre</strong>';
+      }
+      if($error == 'apellidos'){
+        echo '<strong style="color:red">Los apellidos no son correctos</strong>';
+      }
+      if($error == 'edad'){
+        echo '<strong style="color:red">Introduce una edad correcta</strong>';
+      }
+      if($error == 'email'){
+        echo '<strong style="color:red">El correo es erróneo</strong>';
+      }
+      if($error == 'password'){
+        echo '<strong style="color:red">Introduce una contraseña de más de 5 caracteres</strong>';
+      }
+    }
+  ?>
+
+  <form action="procesar_formulario.php" method="POST">
+    <label for="nombre">Nombre:</label><br>
+    <input type="text" name="nombre" required patern="[a-zA-Z]+"><br>
+
+    <label for="apellidos">apellidos:</label><br>
+    <input type="text" name="apellidos" required patern="[a-zA-Z]+"><br>
+
+    <label for="edad">edad:</label><br>
+    <input type="number" name="edad" required patern="[0-9]+"><br>
+
+    <label for="email">email:</label><br>
+    <input type="text" name="email" required><br>
+
+    <label for="pass">Contraseña:</label><br>
+    <input type="password" name="pass" required minlength="5"><br>
+
     <input type="submit"><br>
   </form>
 </body>
