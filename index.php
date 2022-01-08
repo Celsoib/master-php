@@ -13,5 +13,17 @@
     <input type="submit">
   </form>
 
+  <h1>Listado de imágenes</h1>
+  <?php
+    $gestor = opendir("./images");
+
+    if ($gestor):
+      while(($image = readdir($gestor)) !== false):
+        if ($image != '.' && $image != '..') : //. = directorio actual, .. = salida de directorio anterior
+          echo "<img src='images/$image' width='200px' alt=''><br>";
+        endif;
+      endwhile;
+    endif;
+  ?>
 </body>
 </html>
