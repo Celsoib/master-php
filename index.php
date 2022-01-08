@@ -1,32 +1,21 @@
 <?php
 
-// //abrir archivo
-// $archivo = fopen("fichero_texto.txt","a+");
+//crear directorio o carpeta
+if(!is_dir("mi_carpeta")){
+  mkdir("mi_carpeta", 0777) or die("No se puede crear la carpeta");
+}else {
+  echo "Ya existe la carpeta";
+}
 
-// //leer contenido
-// while(!feof($archivo)){
-//   $contenido = fgets($archivo);
-//   echo $contenido."<br>";
-// }
+//borrar directorio
+// rmdir("mi_carpeta");
 
-// //escribir
-// fwrite($archivo, "soy un texto metido desde php***");
-
-// //cerrar archivo
-// fclose($archivo);
-
-
-//copiar
-// copy('fichero_texto.txt', 'fichero_copiado.txt') or die("Error al copiar");
-
-//renombrar
-// rename('fichero_copiado.txt', 'archivito_recopiadito.txt');
-
-//eliminar
-// unlink('archivito_recopiadito.txt') or die("Error al borrar");
-
-if(file_exists("ficheros_texto.txt")){
-  echo "El archivo existe";
-} else{
-  echo "No existe";
+//recorrer el contenido del directorio
+echo "<hr> <h1>Contenido carpeta</h1>";
+if($gestor = opendir('./mi_carpeta')){
+  while(false !== ($archivo = readdir($gestor))){ //mientras que haya archivos dentro de el directorio que voy a leer
+    if($archivo != '.' && $archivo != '..'){
+      echo $archivo."<br>";
+    }
+  }
 }
