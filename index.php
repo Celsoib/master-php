@@ -1,21 +1,17 @@
-<?php
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Subir archivos php</title>
+</head>
+<body>
+  <h1>Subir imagenes con php</h1>
+  <form action="upload.php" method="POST" enctype="multipart/form-data">
+    <input type="file" name="archivo">
+    <input type="submit">
+  </form>
 
-//crear directorio o carpeta
-if(!is_dir("mi_carpeta")){
-  mkdir("mi_carpeta", 0777) or die("No se puede crear la carpeta");
-}else {
-  echo "Ya existe la carpeta";
-}
-
-//borrar directorio
-// rmdir("mi_carpeta");
-
-//recorrer el contenido del directorio
-echo "<hr> <h1>Contenido carpeta</h1>";
-if($gestor = opendir('./mi_carpeta')){
-  while(false !== ($archivo = readdir($gestor))){ //mientras que haya archivos dentro de el directorio que voy a leer
-    if($archivo != '.' && $archivo != '..'){
-      echo $archivo."<br>";
-    }
-  }
-}
+</body>
+</html>
