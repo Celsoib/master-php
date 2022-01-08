@@ -24,3 +24,9 @@
 
 //eliminar
 // unlink('archivito_recopiadito.txt') or die("Error al borrar");
+
+if(file_exists("ficheros_texto.txt")){
+  echo "El archivo existe";
+} else{
+  echo "No existe";
+}
