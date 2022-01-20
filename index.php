@@ -1,29 +1,37 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Subir archivos php</title>
-</head>
-<body>
-  <h1>Subir imagenes con php</h1>
-  <form action="upload.php" method="POST" enctype="multipart/form-data">
-    <input type="file" name="archivo">
-    <input type="submit">
-  </form>
+<?php
+  date_default_timezone_set('America/Asuncion');
+  // Conectar a la base de datos
+  $conexion = mysqli_connect("localhost","root","","phpmysql");
 
-  <h1>Listado de imágenes</h1>
-  <?php
-    $gestor = opendir("./images");
+  // Consulta para configurar la codificación de caracter
+  mysqli_query($conexion, "SET NAMES 'utf8'");
 
-    if ($gestor):
-      while(($image = readdir($gestor)) !== false):
-        if ($image != '.' && $image != '..') : //. = directorio actual, .. = salida de directorio anterior
-          echo "<img src='images/$image' width='200px' alt=''><br>";
-        endif;
-      endwhile;
-    endif;
-  ?>
-</body>
-</html>
+  // Comprobar si la conexión es correcta
+  if(mysqli_connect_errno()){
+    echo "La conexión a la bd mysql ha fallado: ".mysqli_connect_error();
+  } else {
+    echo "Conexión realizada correctamente";
+  }
+
+  // Consulta SELECT desde PHP
+  $query = mysqli_query($conexion, "SELECT * FROM notas");
+  // $notas = mysqli_fetch_assoc($query);
+
+  while ($nota = mysqli_fetch_assoc($query)) {
+    echo "<h2>".$nota['titulo']."</h2>";
+    echo $nota['descripcion']."<br>";
+    // var_dump($nota);
+  }
+
+  // Insertar en la bd desde PHP
+  $sql = "INSERT INTO notas VALUES(null,'Nota desde PHP','Esto es una nota de PHP','green')" ;
+  $insert = mysqli_query($conexion, $sql);
+
+  echo "<hr>";
+  if($insert){
+    echo "Datos insertados correctamente";
+  } else {
+    echo "Error: ".myslqi_error($conexion);
+  }
+?>
+
