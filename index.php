@@ -42,6 +42,10 @@
         </li>
       </ul>
     </nav>
+
+    <!-- para que se limpie lo flotado y lo de abajo no se monte con lo de arriba   -->
+    <div class="clearfix"></div>
+
   </header>
 
   <div id = "contenedor">
@@ -89,33 +93,47 @@
     <div id="principal">
       <h1>Últimas entradas</h1>
       <article class="entrada">
-        <h2>Título de mi entrada</h2>
-        <p>
-          Lorem ipsum dolor sit amet consectetur, adipisicing elit. Fuga recusandae, incidunt tempora omnis culpa qui dignissimos ducimus numquam minima, enim beatae. Ipsa, distinctio modi sequi magnam eaque amet ad repudiandae.
-        </p>
+        <a href="">
+          <h2>Título de mi entrada</h2>
+          <p>
+            Lorem ipsum dolor sit amet consectetur, adipisicing elit. Fuga recusandae, incidunt tempora omnis culpa qui dignissimos ducimus numquam minima, enim beatae. Ipsa, distinctio modi sequi magnam eaque amet ad repudiandae.
+          </p>
+        </a>
       </article>
       <article class="entrada">
-        <h2>Título de mi entrada</h2>
-        <p>
-          Lorem ipsum dolor sit amet consectetur, adipisicing elit. Fuga recusandae, incidunt tempora omnis culpa qui dignissimos ducimus numquam minima, enim beatae. Ipsa, distinctio modi sequi magnam eaque amet ad repudiandae.
-        </p>
+        <a href="">
+          <h2>Título de mi entrada</h2>
+          <p>
+            Lorem ipsum dolor sit amet consectetur, adipisicing elit. Fuga recusandae, incidunt tempora omnis culpa qui dignissimos ducimus numquam minima, enim beatae. Ipsa, distinctio modi sequi magnam eaque amet ad repudiandae.
+          </p>
+        </a>
       </article>
       <article class="entrada">
-        <h2>Título de mi entrada</h2>
-        <p>
-          Lorem ipsum dolor sit amet consectetur, adipisicing elit. Fuga recusandae, incidunt tempora omnis culpa qui dignissimos ducimus numquam minima, enim beatae. Ipsa, distinctio modi sequi magnam eaque amet ad repudiandae.
-        </p>
+        <a href="">
+          <h2>Título de mi entrada</h2>
+          <p>
+            Lorem ipsum dolor sit amet consectetur, adipisicing elit. Fuga recusandae, incidunt tempora omnis culpa qui dignissimos ducimus numquam minima, enim beatae. Ipsa, distinctio modi sequi magnam eaque amet ad repudiandae.
+          </p>
+        </a>
       </article>
       <article class="entrada">
-        <h2>Título de mi entrada</h2>
-        <p>
-          Lorem ipsum dolor sit amet consectetur, adipisicing elit. Fuga recusandae, incidunt tempora omnis culpa qui dignissimos ducimus numquam minima, enim beatae. Ipsa, distinctio modi sequi magnam eaque amet ad repudiandae.
-        </p>
+        <a href="">
+          <h2>Título de mi entrada</h2>
+          <p>
+            Lorem ipsum dolor sit amet consectetur, adipisicing elit. Fuga recusandae, incidunt tempora omnis culpa qui dignissimos ducimus numquam minima, enim beatae. Ipsa, distinctio modi sequi magnam eaque amet ad repudiandae.
+          </p>
+        </a>
       </article>
-    </div>
+      <div id="ver-todas">
+        <a href="">Ver todas las entradas</a>
+      </div>
+    </div> <!-- fin principal -->
+
+    <!-- para que el pie de página no suba y se mantega todo el modelo de caja  -->
+    <div class="clearfix"></div>
   </div>
   <!-- Pie de página  -->
-  <footer id="footer">
+  <footer id="pie">
     <p>Desarrollado por Celso Ibáñez &copy; 2022</p>
   </footer>
 

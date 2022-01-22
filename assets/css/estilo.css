@@ -1,0 +1,292 @@
+/* fuentes  */
+@font-face {
+  font-family: "fajala";
+  src: url(../fonts/fuente.ttf) format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+/* generales  */
+* {
+  padding: 0;
+  margin: 0;
+  font-family: sans-serif, helvetica, Arial;
+  text-decoration: none;
+}
+
+/*
+Esto lo que va a hacer es limpiarnos los flotados pq cuando yo floto un
+elemento a un lado y otro elemento a otro, lo de abajo se suele subir hacia
+arriba y eso es pq hay flotados ahí que todavía no se han limpiado y lo sigue
+tomando a los elementos que se siguen cargando más abajo en la página
+
+Entonces esta clase me va a limpiar los flotados que vengan a partir de ella
+*/
+.clearfix {
+  clear:both;
+  float: none;
+}
+
+body {
+  background: url(../img/cubes.png) #f4f4f4;
+}
+
+/* Cabecera  */
+#cabecera {
+  width: 85%;
+  height: auto;
+  background: transparent;
+  margin: 0 auto;
+}
+
+#logo {
+  float: left;
+  width: 540px;
+  height: 110px;
+}
+
+#logo a {
+  font-family: "fajala", Helvetica;
+  font-size: 40px;
+  letter-spacing: 2px;
+  color: #2979cd;
+  text-shadow: 0px 0px 0px black, 1px 1px 0px black, 2px 2px 0px black;
+  transition: all 500ms;
+  line-height: 90px;
+  margin-inline-start: 10px;
+}
+
+#logo a:hover {
+  cursor: pointer;
+  text-shadow: 0px 0px 0px black, -1px -1px 0px black, -2px -2px 0px black;
+}
+
+/* menu  */
+#menu {
+  width: 100%;
+  height: 45px;
+  clear: both;
+  background: linear-gradient(to bottom, #f9f9f9 0px, #e9e9e9 100%);
+  border: 1px solid #c9c9c9;
+  border-radius: 8px;
+  box-shadow: 0 1px 1px #ccc;
+  overflow: hidden;
+}
+
+#menu ul {
+  list-style: none;
+}
+
+#menu ul li {
+  float: left;
+  line-height: 44px;
+  border-right: 1px solid #d6d6d6;
+}
+
+#menu ul li a {
+  display: block;
+  padding-left: 10px;
+  padding-right: 10px;
+  font-size: 15px;
+  color: #838282;
+}
+
+#menu ul li a:hover {
+  background: linear-gradient(to bottom, #f2f2f2 0px, #dad9d4 100%);
+}
+
+/* contenido  */
+#contenedor {
+  width: 85%;
+  height: auto;
+  /* min-height: auto; */
+  margin: 0 auto;
+  margin-block-start: 30px;
+  margin-block-end: 30px;
+}
+
+/* barra lateral  */
+#sidebar {
+  float: right;
+  width: 27%;
+  height: auto;
+}
+
+.bloque {
+  display: block;
+  width: 90%;
+  margin: 0 auto;
+  margin-block-end: 35px;
+  background: white;
+  padding: 15px;
+  box-shadow: 0px 0px 1px rgba(0,0,0,0.3), 0px 3px 7px rgba(0,0,0,0.3), 0px 0px 1px #ffffff inset,0px -3px 2px rgba(0,0,0,0.25) inset;
+}
+
+.bloque h3 {
+  margin-block-end: 15px;
+}
+
+label,
+input[type="text"],
+input[type="email"],
+input[type="password"] {
+  display: block;
+  width: 95%;
+  margin-block-start: 2px;
+  margin-block-end: 2px;
+}
+
+input[type="text"],
+input[type="email"],
+input[type="password"] {
+  padding: 5px;
+  margin-block-end: 10px;
+}
+
+input[type="button"],
+input[type="submit"] {
+  margin-block-start: 5px;
+  margin-block-end: 5px;
+
+  display: block;
+  border-radius: 2px;
+  color: white;
+  background: #007ee5;
+  border: 1px solid #156785;
+  cursor: pointer;
+  padding: 7px;
+}
+
+
+/* principal  */
+#principal {
+  float: left;
+  width: 65%;
+  min-height: 572px;
+  background: white;
+  border-radius: 5px;
+  box-shadow: 5px;
+  margin-inline-start: 20px;
+  padding: 20px;
+  overflow: hidden;
+}
+
+#principal a {
+  color: #333;
+}
+
+#principal h1 {
+  font-size: 32px;
+  color: #444;
+  letter-spacing: 1px;
+  text-shadow: 1px 1px 2px #ccc;
+  font-family: "fajala";
+}
+
+#principal h2 {
+  font-size: 20px;
+  color: #2979cd;
+  text-shadow: 1px 1px 2px #ccc;
+  letter-spacing: 1px;
+  font-family: "fajala";
+  margin-block-start: 25px;
+}
+
+#ver-todas a {
+  display: block;
+  border-radius: 2px;
+  padding: 15px;
+  color: white;
+  background: #007ee5;
+  border: 1px solid #156785;
+  cursor: pointer;
+  width: 160px;
+  margin: 0 auto;
+  margin-block-start: 50px;
+}
+
+/* pie de página  */
+#pie {
+  clear: both;
+  width: 85%;
+  margin: 0 auto;
+  background: linear-gradient(to bottom, #f2f2f2 0px, #dad9d4 100%);
+  border: 1px solid #c9c9c9;
+  border-block-end: none;
+  border-radius: 8px 8px 0px 0px;
+  color: #666;
+  height: auto;
+  padding: 15px;
+  text-align: center;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
