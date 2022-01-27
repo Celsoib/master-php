@@ -1,7 +1,6 @@
 <?php require_once 'includes/cabecera.php';?>
-
     <!-- Barra lateral  -->
-    <?php require_once 'includes/lateral.php';?>
+<?php require_once 'includes/lateral.php';?>
 
     <!-- Caja principal  -->
     <div id="principal">

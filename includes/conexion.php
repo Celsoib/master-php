@@ -2,7 +2,7 @@
   $server = "localhost";
   $user = "root";
   $password = "";
-  $bd = "blog_master";
+  $bd = "blog";
 
   $conexion = mysqli_connect ($server, $user, $password, $bd);
 
@@ -15,5 +15,8 @@
   if(!$conexion){
     die('Error de Conexión:' . mysqli_connect_errno());
   }
+
+  // iniciar sesión
+  session_start();
 
 ?>
