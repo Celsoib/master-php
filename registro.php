@@ -4,19 +4,23 @@
     // conexion a la bd
     require_once "includes/conexion.php";
 
-    // session_start();
+    //si no existe $_SESSION lo creamos
+    if (!isset($_SESSION)) {
+      session_start();
+    }
 
     // recoger los valores del formulario del registro
+
     // operador condicional
     if (isset($_POST["nombre"])) {
-      $nombre = $_POST["nombre"];
+      $nombre = mysqli_real_escape_string($conexion,$_POST["nombre"]);
     } else {
       $nombre = false;
     }
     // operador tenario, más optimizado
-    $apellidos = isset($_POST["apellidos"]) ? $_POST["apellidos"] : false;
-    $email = isset($_POST["email"]) ? $_POST["email"] : false;
-    $password = isset($_POST["password"]) ? $_POST["password"] : false;
+    $apellidos = isset($_POST["apellidos"]) ? mysqli_real_escape_string($conexion,$_POST["apellidos"]) : false;
+    $email = isset($_POST["email"]) ? mysqli_real_escape_string($conexion,$_POST["email"]) : false;
+    $password = isset($_POST["password"]) ? mysqli_real_escape_string($conexion,$_POST["password"]) : false;
 
     // array errores
     $errores = array();
