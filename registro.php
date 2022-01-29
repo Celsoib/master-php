@@ -19,7 +19,7 @@
     }
     // operador tenario, más optimizado
     $apellidos = isset($_POST["apellidos"]) ? mysqli_real_escape_string($conexion,$_POST["apellidos"]) : false;
-    $email = isset($_POST["email"]) ? mysqli_real_escape_string($conexion,$_POST["email"]) : false;
+    $email = isset($_POST["email"]) ? mysqli_real_escape_string($conexion, trim($_POST["email"])) : false; //trim() para que se guarde sin espacios
     $password = isset($_POST["password"]) ? mysqli_real_escape_string($conexion,$_POST["password"]) : false;
 
     // array errores

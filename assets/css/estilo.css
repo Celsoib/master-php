@@ -159,10 +159,10 @@ input[type="password"] {
 }
 
 input[type="button"],
-input[type="submit"] {
+input[type="submit"],
+.boton {
   margin-block-start: 5px;
   margin-block-end: 5px;
-
   display: block;
   border-radius: 2px;
   color: white;
@@ -170,6 +170,23 @@ input[type="submit"] {
   border: 1px solid #156785;
   cursor: pointer;
   padding: 7px;
+}
+
+.boton {
+  width: 130px;
+  text-align: center;
+}
+.boton-naranja {
+  background: orange;
+  border-color: #bd7d08;
+}
+.boton-verde {
+  background: #21b921;
+  border-color: green;
+}
+.boton-rojo {
+  background: red;
+  border-color: #444 ;
 }
 
 
