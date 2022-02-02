@@ -57,9 +57,12 @@
   }
 
   function conseguirEntrada($conexion, $id){
-    $sql = "SELECT e.*,c.nombre AS categoria FROM entradas e
+    $sql = "SELECT e.*,c.nombre AS categoria, CONCAT(u.nombre,' ',u.apellidos) AS usuario
+            FROM entradas e
             JOIN categorias c ON c.id = e.categoria_id
+            JOIN usuarios u ON u.id = e.usuario_id
             WHERE e.id = $id;";
+
     $entrada = mysqli_query($conexion,$sql);
     $resultado = array();
 
