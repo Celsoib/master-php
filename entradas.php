@@ -4,10 +4,10 @@
 
     <!-- Caja principal  -->
     <div id="principal">
-      <h1>Últimas entradas</h1>
+      <h1>Todas las entradas</h1>
 
       <?php
-        $entradas = conseguirEntradas($conexion,true);
+        $entradas = conseguirEntradas($conexion);
         if(!empty($entradas)):
           // por cada fila que recorra que me cree una variable 'entrada' con un array asociativo
           while($entrada = mysqli_fetch_assoc($entradas)):
@@ -25,10 +25,6 @@
           endwhile;
         endif;
       ?>
-
-      <div id="ver-todas">
-        <a href="entradas.php">Ver todas las entradas</a>
-      </div>
     </div> <!-- fin principal -->
   <!-- Pie de página  -->
   <?php require_once "includes/pie.php";?>

@@ -51,6 +51,7 @@
       $sql = "SELECT id,email FROM usuarios WHERE email = '$email'";
       $isset_email = mysqli_query($conexion,$sql);
       $isset_user = mysqli_fetch_assoc($isset_email);
+      // $idusuario = $_SESSION['usuario']['id']; esto se puede usar en vez del $usuario['id'] sin la necesidad de concatenar
 
       if ($isset_user['id'] == $usuario['id'] || empty($isset_user)) {
         // actualizar usuario en la tabla de usuarios de la bd
