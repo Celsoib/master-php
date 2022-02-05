@@ -1,35 +1,16 @@
-<?php require_once 'includes/cabecera.php';?>
-    <!-- Barra lateral  -->
-<?php require_once 'includes/lateral.php';?>
+<?php
+require_once "coche.php";
 
-    <!-- Caja principal  -->
-    <div id="principal">
-      <h1>Últimas entradas</h1>
+$coche = new Coche("Amarillo","Renault","Clio",150,200,5);
+$coche1 = new Coche("Verde","Seat","Panda",250,200,5);
+$coche2 = new Coche("Azul","Citroen","Kara",100,220,4);
+$coche3 = new Coche("Rojo","Mercedes","Clase A",350,100,3);
 
-      <?php
-        $entradas = conseguirEntradas($conexion,true);
-        if(!empty($entradas)):
-          // por cada fila que recorra que me cree una variable 'entrada' con un array asociativo
-          while($entrada = mysqli_fetch_assoc($entradas)):
-      ?>
-            <article class="entrada">
-              <a href="entrada.php?id=<?=$entrada['id']?>">
-                <h2><?=$entrada['titulo']?></h2>
-                <span class="fecha"><?=$entrada['categoria'].' | '.$entrada['fecha']?></span>
-                <p>
-                  <?=substr($entrada['descripcion'],0,160)."..."?>
-                </p>
-              </a>
-            </article>
-      <?php
-          endwhile;
-        endif;
-      ?>
+echo $coche->mostrarInformacion($coche1);
 
-      <div id="ver-todas">
-        <a href="entradas.php">Ver todas las entradas</a>
-      </div>
-    </div> <!-- fin principal -->
-  <!-- Pie de página  -->
-  <?php require_once "includes/pie.php";?>
+// var_dump($coche->getColor());
+// var_dump($coche1);
+// var_dump($coche2);
+// var_dump($coche3);
 
+?>
