@@ -1,16 +1,9 @@
 <?php
-require_once "coche.php";
+require_once "clases.php";
 
-$coche = new Coche("Amarillo","Renault","Clio",150,200,5);
-$coche1 = new Coche("Verde","Seat","Panda",250,200,5);
-$coche2 = new Coche("Azul","Citroen","Kara",100,220,4);
-$coche3 = new Coche("Rojo","Mercedes","Clase A",350,100,3);
+$persona = new Persona();
+var_dump($persona);
 
-echo $coche->mostrarInformacion($coche1);
-
-// var_dump($coche->getColor());
-// var_dump($coche1);
-// var_dump($coche2);
-// var_dump($coche3);
-
+$info = new Informatico();
+var_dump($info);
 ?>
