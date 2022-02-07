@@ -1,32 +1,45 @@
 <?php
-  abstract class Ordenador {
-    public $encendido;
 
-    // CUANDO YO DEFINO UNA FUNCIÓN COMO ABSTRACTA NO LE PUEDO INDICAR QUÉ FUNCIONALIDAD VA
-    // A TENER DENTRO, SIMPLEMENTE LA DEFINO, DIGO QUE VA A EXISTIR. HAY QUE DEFINIR EN LA
-    // CLASE HIJO
-    abstract public function encender();
+interface Ordenador {
+  public function encender();
+  public function apagar();
+  public function reiniciar();
+  public function desfragmentar();
+  public function detectarUSB();
+}
 
-    public function apagar(){
-      $this->encendido = false;
-    }
+class iMAC implements Ordenador {
+  private $modelo;
+
+  function getModelo() {
+    return $this->modelo;
   }
 
-  class PcAsus extends Ordenador{
-    public $software;
-
-    public function arrancarSoftware(){
-      $this->software = true;
-    }
-
-    public function encender(){
-      $this->encendido = true;
-    }
+  function setModelo($modelo) {
+    $this->modelo = $modelo;
   }
 
-  $ordenador = new PcAsus();
-  $ordenador->arrancarSoftware();
-  $ordenador->encender();
-  $ordenador->apagar();
-  var_dump($ordenador);
+  public function encender(){
+
+  }
+  public function apagar(){
+
+  }
+  public function reiniciar(){
+
+  }
+  public function desfragmentar(){
+
+  }
+  public function detectarUSB(){
+
+  }
+
+}
+
+$maquintos = new iMAC();
+$maquintos->setModelo("Mackbook pro");
+var_dump($maquintos);
+echo $maquintos->getModelo();
+
 ?>
