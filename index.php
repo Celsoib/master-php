@@ -1,39 +1,32 @@
 <?php
+  abstract class Ordenador {
+    public $encendido;
 
-class Usuario {
-  // LAS COSNTANTES DEBEN SER EN MAYUSCULAS
-  const URL_COMPLETA = "http://localhost";
-  public $email;
-  public $password;
+    // CUANDO YO DEFINO UNA FUNCIÓN COMO ABSTRACTA NO LE PUEDO INDICAR QUÉ FUNCIONALIDAD VA
+    // A TENER DENTRO, SIMPLEMENTE LA DEFINO, DIGO QUE VA A EXISTIR. HAY QUE DEFINIR EN LA
+    // CLASE HIJO
+    abstract public function encender();
 
-  public function getEmail(){
-    return $this->email;
+    public function apagar(){
+      $this->encendido = false;
+    }
   }
 
-  public function getPassword(){
-    return $this->password;
+  class PcAsus extends Ordenador{
+    public $software;
+
+    public function arrancarSoftware(){
+      $this->software = true;
+    }
+
+    public function encender(){
+      $this->encendido = true;
+    }
   }
 
-  public function setEmail($email){
-    $this->email = $email;
-  }
-
-  public function setPassword($password){
-    $this->password = $password;
-  }
-
-}
-
-
-// ::self SE REFIRE A UNA PROPIEDAD A NIVEL DE CLASE
-// $this-> SE REFIERE A UNA PROPIEDAD A NIVEL DE OBJETO
-
-// TAMBIÉN FUNCIONA PQ AL SER UNA PROPIEDAD ESTÁTICA ESTÁ DEFINIDA A
-// NIVEL DE CLASE, NO A NIVEL DE OBJETO
-// echo Usuario::URL_COMPLETA;
-
-$usuario = new Usuario();
-echo $usuario::URL_COMPLETA;
-var_dump($usuario);
-
+  $ordenador = new PcAsus();
+  $ordenador->arrancarSoftware();
+  $ordenador->encender();
+  $ordenador->apagar();
+  var_dump($ordenador);
 ?>
