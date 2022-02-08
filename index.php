@@ -1,45 +1,22 @@
 <?php
 
-interface Ordenador {
-  public function encender();
-  public function apagar();
-  public function reiniciar();
-  public function desfragmentar();
-  public function detectarUSB();
-}
+  // CAPTURAR EXCEPCIONES, EN CÓDIGO SUSCEPTIBLE A ERRORES
+  try{
 
-class iMAC implements Ordenador {
-  private $modelo;
+    if(isset($_GET['id'])){
+      echo "<h1>El parámetro es: {$_GET['id']}</h1>";
+    }else {
+      throw new Exception("Faltan parámetros por la URL");
+    }
 
-  function getModelo() {
-    return $this->modelo;
+  } catch(Exception $e){
+    echo "Ha habido un error: ".$e->getMessage();
+
+  } finally {
+    // FINALLY: SIRVE PARA INDICARLE CUANDO SE HA ACABADO ESTA ESTRUCTURA
+    // AUNQUE NO SE USE MUCHO, BÁSICAMENTE SIRVE PAR AHACER ALGO CUANDO SE
+    // ACABE EL TRY Y CATCH
+    echo "<br>Todo correcto";
   }
-
-  function setModelo($modelo) {
-    $this->modelo = $modelo;
-  }
-
-  public function encender(){
-
-  }
-  public function apagar(){
-
-  }
-  public function reiniciar(){
-
-  }
-  public function desfragmentar(){
-
-  }
-  public function detectarUSB(){
-
-  }
-
-}
-
-$maquintos = new iMAC();
-$maquintos->setModelo("Mackbook pro");
-var_dump($maquintos);
-echo $maquintos->getModelo();
 
 ?>
