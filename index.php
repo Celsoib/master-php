@@ -1,22 +1,17 @@
 <?php
 
-  // CAPTURAR EXCEPCIONES, EN CÓDIGO SUSCEPTIBLE A ERRORES
-  try{
+// require_once "clases/categoria.php";
+// require_once "clases/usuario.php";
+// require_once "clases/entrada.php";
+require_once 'autoload.php';
 
-    if(isset($_GET['id'])){
-      echo "<h1>El parámetro es: {$_GET['id']}</h1>";
-    }else {
-      throw new Exception("Faltan parámetros por la URL");
-    }
+$usuario = new Usuario();
 
-  } catch(Exception $e){
-    echo "Ha habido un error: ".$e->getMessage();
+echo $usuario->nombre;
+echo "<br>";
+echo $usuario->email;
 
-  } finally {
-    // FINALLY: SIRVE PARA INDICARLE CUANDO SE HA ACABADO ESTA ESTRUCTURA
-    // AUNQUE NO SE USE MUCHO, BÁSICAMENTE SIRVE PAR AHACER ALGO CUANDO SE
-    // ACABE EL TRY Y CATCH
-    echo "<br>Todo correcto";
-  }
+$categoria = new Categoria();
+echo "<br>".$categoria->nombre;
 
 ?>
