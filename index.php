@@ -59,18 +59,28 @@ echo "<br>".$categoria->nombre;
       $this->entrada = $entrada;
     }
 
+    // public function informacion(){
+    //   // echo __CLASS__;
+    //   // echo __METHOD__;
+    //   // echo __FILE__;
+    //   // echo __TRAIT__;
+    //   echo __NAMESPACE__;
+    // }
+
   }
   // OBJETO PRINCIPAL
   $principal = new Principal();
+  // $principal->informacion();
   // var_dump($principal->usuario);
   $metodos = get_class_methods($principal);
 
   $busqueda = array_search('setEntrada',$metodos);
-  var_dump($busqueda); //EN PANTALLA IMPRIME EL ÍNDICE 6, SI EL MÉTODO NO EXISTE, DA false
+  //var_dump($busqueda); //EN PANTALLA IMPRIME EL ÍNDICE 6, SI EL MÉTODO NO EXISTE, DA false
 
   // OBJETO OTRO PAQUETE
   $usuario = new UsuarioAdmin();
-  var_dump($usuario);
+  $usuario->informacion();
+  // var_dump($usuario);
 
   // COMPRUEBA SI EXISTE UNA CLASE TANTO EN EL FICHERO ACTUAL COMO DE MANERA GLOBAL EN EL PROYECTO
   $clase = @class_exists('PanelAdministrador\Usuario2');//EL @ ESCONDE LOS WARNINGS(ERRORES) PQ SI HAY UN FALLO DE QUE NO PUEDE ABRIR UN ARCHIVO INEVITABLEMENTE ME VA A DEVOLVER UN ERROR
