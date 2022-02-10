@@ -8,6 +8,12 @@
     public $email;
     public $password;
 
+    // DE ESTA MANERA TENGO ACCESO A LA PROPIEDAD db PARA HACER CONSULTAS
+    // EN CUALQUIER MÉTODO QUE YO QUIERA
+    public function __construct(){
+      parent::__construct();
+    }
+
     public function getNombre(){
       return $this->nombre;
     }

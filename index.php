@@ -1,7 +1,6 @@
 <h1>BIENVENIDO A MI WEB CON MVC</h1>
 <?php
-  require_once "controllers/UsuarioController.php";
-  require_once "controllers/NotaController.php";
+  require_once "autoload.php";
 
   // LO QUE ESTAMOS HACIENDO AQUÍ EN EL INDEX SE CONOCE COMO CONTROLADOR FRONTAL,
   // ES DECIR, QUE SE ENCARGAN DE CARGAR UN FICHERO, UNA ACCIÓN U OTRA FUNCIÓN QUE ME

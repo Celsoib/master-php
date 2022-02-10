@@ -14,7 +14,7 @@
 
       // LÓGICA ACCIÓN DEL CONTROLADOR
       $usuario = new Usuario();
-      $todos_los_usuarios = $usuario->conseguirTodos();
+      $todos_los_usuarios = $usuario->conseguirTodos('usuarios');
 
       // VISTA
       require_once "views/usuarios/mostrar_todos.php";
