@@ -1,33 +1,82 @@
-<h1>BIENVENIDO A MI WEB CON MVC</h1>
-<?php
-  require_once "autoload.php";
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tienda de comisetas</title>
+  <link rel="stylesheet" href="assets/css/styles.css">
+</head>
+<body>
+  <!-- CABECERA  -->
+  <header id="header">
+    <div id="logo">
+      <img src="assets/img/camiseta.png" alt="Camiseta logo" id="logo">
+      <a href="index.php">Tienda de camisetas</a>
+    </div>
+  </header>
 
-  // LO QUE ESTAMOS HACIENDO AQUÍ EN EL INDEX SE CONOCE COMO CONTROLADOR FRONTAL,
-  // ES DECIR, QUE SE ENCARGAN DE CARGAR UN FICHERO, UNA ACCIÓN U OTRA FUNCIÓN QUE ME
-  // LLEGA POR LA URL.
-  // CONTROLADOR FRONTA, ES EL ÚNICO FICHERO QUE SE ENCARGA DE CARGARLO ABSOLUTAMENTE TODO
+  <!-- MENÚ  -->
+  <nav id="menu">
+    <ul>
+      <li>
+        <a href="#">Inicio</a>
+      </li>
+      <li>
+        <a href="#">Categoría 1</a>
+      </li>
+      <li>
+        <a href="#">Categoría 2</a>
+      </li>
+      <li>
+        <a href="#">Categoría 3</a>
+      </li>
+      <li>
+        <a href="#">Categoría 4</a>
+      </li>
+      <li>
+        <a href="#">Categoría 5</a>
+      </li>
+    </ul>
+  </nav>
 
-  if (isset($_GET['controller'])) {
-    $nombre_controlador = $_GET['controller'].'Controller';
-  } else {
-    echo 'La página que buscas no existe';
-    exit(); //PARA QUE LO DE ABAJO NO ME EJECUTE MÁS
-  }
+  <div id="content">
+    <!-- BARRA LATERAL  -->
+    <div class="block_aside" id="login">
+      <form action="#" method="POST">
+        <p>
+          <label for="email">Email</label>
+          <input type="email" name="email">
+        </p>
+        <p>
+          <label for="password">Contraseña</label>
+          <input type="password" name="password">
+        </p>
+        <input type="submit" value="Enviar">
+      </form>
 
-  if(class_exists($nombre_controlador)){
+      <a href="#">Mis pedidos</a>
+      <a href="#">Gestionar pedidos</a>
+      <a href="#">Gestionar categorías</a>
 
-    $controlador = new $nombre_controlador();
+    </div>
 
-    if (isset($_GET['action']) && method_exists($controlador,$_GET['action'])) {
-      $action = $_GET['action'];
-      $controlador->$action();
-    } else {
-      echo "La página que buscas no existe 1";
-    }
+    <!-- CONTENIDO CENTRAL  -->
+    <div id="central">
+      <div class="product">
+        <img src="assets/img/camiseta.png" alt="Foto camiseta">
+        <h2>Camiseta Azul Ancha</h2>
+        <p>30.000 Gs</p>
+        <a href="#">Comprar</a>
+      </div>
+    </div>
 
-  } else {
-    echo "La página que buscas no existe 2";
-  }
+  </div>
 
 
-?>
+  <!-- PIE DE PÁGINA  -->
+  <footer id="footer">
+    <p>Desarrollado por Celso Ibáñez WEB &copy; <?=date('Y')?></p>
+  </footer>
+</body>
+</html>
