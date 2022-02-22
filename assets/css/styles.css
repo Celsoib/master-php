@@ -4,6 +4,7 @@
 * {
   padding: 0px;
   margin: 0px;
+  font-family: sans-serif, Helvetica,Arial;
 }
 
 body {
@@ -68,7 +69,203 @@ a:hover {
 }
 
 /* MENÚ  */
+#menu {
+  clear:both; /*para que lo de arriba que está flotado se mantenga bien incluso más hacia arriba*/
+  background-color: #222;
+  color: white;
+  height: 55px;
+  border-bottom: 4px solid #01b1ea;
+
+}
+
+#menu ul {
+  list-style: none;
+  text-decoration: none;
+  margin: 0 auto;
+  margin-left: 25px;
+}
+
+#menu ul li {
+  line-height: 55px;
+  float: left;
+  border-right: 1px solid #363636;
+}
+
+#menu a {
+  display: block;
+  color: white;
+  text-decoration: none;
+  padding: 0 12px;
+  transition: all 300ms;
+}
+
+#menu a:first-child {
+  border-left: 1px solid #363636;
+}
+
+#menu a:hover {
+  background-color: #01b1ea;
+}
+
+/* CONTENT  */
+#content {
+  margin: 0 auto;
+  overflow: hidden;
+  background-color: white;
+}
+
+/* BARRA LATERAL  */
+#lateral {
+  width: 22%;
+  min-height: 500px;
+  float: left;
+  margin-top: 20px;
+  margin-left: 10px;
+}
+
+#lateral .block_aside {
+  display: block;
+  width: 90%;
+  margin: 5px auto;
+  padding: 10px;
+}
+
+#lateral h3 {
+  display: block;
+  color: #222;
+  width: 100%;
+  text-align: center;
+  padding-block-start: 2px;
+  padding-block-end: 2px;
+  margin-block-end: 15px;
+  font-size: 16px;
+  font-weight: bold;
+  background-color: #e1e1e1;
+  border-bottom: 2px solid #01b1ea;
+}
+
+#lateral ul {
+  margin-block: 20px;
+}
+
+#lateral ul li{
+  list-style: square;
+  margin-inline-start: 20px;
+  margin-block: 5px;
+}
+
+
+
+/* FORMS */
+label,
+input[type="text"],
+input[type="password"],
+input[type="email"],
+select {
+  display: block;
+  width: 95%;
+  margin-block: 2px;
+}
+
+input[type="text"],
+input[type="password"],
+input[type="email"],
+select {
+  border: 1px solid #c9c9c9;
+  box-shadow: 0 0 2px #ccc inset;
+  background: white;
+  padding: 2px;
+  color: gray;
+  transition: all 300ms;
+}
+
+input[type="text"]:focus,
+input[type="password"]:focus,
+input[type="email"]:focus {
+  border: 1px solid #1579b5;
+  color: black;
+}
+
+input[type="button"],
+input[type="submit"],
+button, .button {
+  display: block;
+  border-radius: 2px;
+  width: auto;
+  padding: 5px;
+  padding-inline: 10px;
+  color: white;
+  background: #2979cd;
+  border: 1px solid #11608e;
+  cursor: pointer;
+}
+
+.button {
+  background-color: #33ae3d;
+  color: white !important;
+  text-decoration: none;
+}
+
+label,
+input[type="button"],
+input[type="submit"],
+button {
+  display: block;
+  margin-block-start: 10px;
+}
+
+/* CENTRAL  */
+#central {
+  width: 70%;
+  float: right;
+  min-height: 500px;
+  border-left: 1px solid #ccc;
+  box-shadow: -5px -1px 5px #ddd;
+  padding: 25px;
+}
+
+#central h1 {
+  font-size: 24px;
+  font-weight: normal;
+  letter-spacing: 1px;
+  text-align: center;
+  border-bottom: 1px solid #ccc;
+  margin-bottom: 20px;
+  padding: 20px;
+  padding-top: 0px;
+}
+
+/* PRODUCTOS */
+.product {
+  width: 30%;
+  float: left;
+  margin: 0 8px;
+  text-align: center;
+}
+
 
 .product img {
   width: 100px;
+  margin-bottom: 10px;
+}
+
+.product h2 {
+  font-size: 18px;
+  margin-bottom: 10px;
+}
+.product p {
+  font-weight: bold;
+  color: #555;
+  margin-bottom: 10px;
+}
+
+/* FOOTER  */
+#footer {
+  clear: both;
+  text-align: center;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  color: white;
+  background-color: #222222;
+  border-top: 4px solid #01b1ea;
 }
