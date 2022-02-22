@@ -1,105 +1,49 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Tienda de comisetas</title>
-  <link rel="stylesheet" href="assets/css/styles.css">
-</head>
-<body>
-  <!-- INICIO CONTAINER GENERAL  -->
-  <div id="container">
+<!-- ESTE VA A SER UN CONTROLADOR FRONTAL, SE VA A ENCARGAR DE RECO🇩🇪 PARÁMETROS
+POR LA URL Y VER A QUÉ CONTROLADOR PERTENECE, CARGAR ESE ARCHIVO, CARGAR ESE
+OBJETO Y LUEGO LLAMAR AL MÉTODO CORRESPONDIENTE QUE NOS TIENE QUE LLEGAR POR LA
+URL -->
 
-    <!-- CABECERA  -->
-    <header id="header">
-      <div id="logo">
-        <img src="assets/img/camiseta.png" alt="Camiseta logo" id="logo">
-        <a href="index.php">Tienda de camisetas</a>
-      </div>
-    </header>
+<?php
+  // CARGAMOS EL autoload PARA TENER ACCESO A TODOS LOS OBJETOS, A TODAS LAS CLASES
+  require_once "autoload.php";
+  require_once "views/layout/header.php";
+  require_once "views/layout/sidebar.php";
 
-    <!-- MENÚ  -->
-    <nav id="menu">
-      <ul>
-        <li>
-          <a href="#">Inicio</a>
-        </li>
-        <li>
-          <a href="#">Categoría 1</a>
-        </li>
-        <li>
-          <a href="#">Categoría 2</a>
-        </li>
-        <li>
-          <a href="#">Categoría 3</a>
-        </li>
-        <li>
-          <a href="#">Categoría 4</a>
-        </li>
-        <li>
-          <a href="#">Categoría 5</a>
-        </li>
-      </ul>
-    </nav>
+  // LO QUE ESTAMOS HACIENDO AQUÍ EN EL INDEX SE CONOCE COMO CONTROLADOR FRONTAL,
+  // ES DECIR, QUE SE ENCARGAN DE CARGAR UN FICHERO, UNA ACCIÓN U OTRA FUNCIÓN QUE ME
+  // LLEGA POR LA URL.
+  // CONTROLADOR FRONTAL, ES EL ÚNICO FICHERO QUE SE ENCARGA DE CARGARLO ABSOLUTAMENTE TODO
 
-    <div id="content">
+  // COMPRUEBO SI ME LLEGA EL CONTROLADOR POR LA URL
+  if (isset($_GET['controller'])) {
+    // EN EL CASO DE QUE LLEGUE LA URL ME GENERA ESTA VARIABLE
+    $nombre_controlador = $_GET['controller'].'Controller';
+  } else {
+    // EN EL CASO DE QUE NO LLEGUE LA URL ME CORTA LA EJECUCIÓN
+    echo 'La página que buscas no existe';
+    exit(); //PARA QUE LO DE ABAJO NO ME EJECUTE MÁS
+  }
 
-      <!-- BARRA LATERAL  -->
-      <aside id="lateral">
-        <div class="block_aside" id="login">
-          <h3>Entrar a la web</h3>
-          <form action="#" method="POST">
-            <p>
-              <label for="email">Email</label>
-              <input type="email" name="email">
-            </p>
-            <p>
-              <label for="password">Contraseña</label>
-              <input type="password" name="password">
-            </p>
-            <input type="submit" value="Enviar">
-          </form>
-        </div>
-        <ul>
-          <li><a href="#">Mis pedidos</a></li>
-          <li><a href="#">Gestionar pedidos</a></li>
-          <li><a href="#">Gestionar categorías</a></li>
-        </ul>
+  // COMPRUEBO SI EXISTE EL CONTROLADOR
+  if(class_exists($nombre_controlador)){
+    // SI EXISTE ESA CLASE ENTONCES CREO EL OBJETO
+    $controlador = new $nombre_controlador();
 
-      </aside>
+    // LUEGO COMPRUEBO SI ME LLEGA LA ACCIÓN Y SI EL MÉTODO EXISTE DENTRO DEL
+    // CONTROLADOR
+    if (isset($_GET['action']) && method_exists($controlador,$_GET['action'])) {
+      // SI ES ASÍ LLAMA E INVOCA A ESE MÉTODO
+      $action = $_GET['action'];
+      $controlador->$action();
+    } else {
+      // EN EL CASO DE QUE NO QUE DIGA QUE LA PÁGINA NO EXISTE
+      echo "La página que buscas no existe 1";
+    }
+  // SI NO SE CUMPLE LA PRIMERA CONDICIÓN QUE NOS DIGA TAMBIÉN QUE LA PÁGINA NO EXISTE
+  } else {
+    echo "La página que buscas no existe 2";
+  }
 
-      <!-- CONTENIDO CENTRAL  -->
-      <div id="central">
-        <h1>Productos destacados</h1>
-        <div class="product">
-          <img src="assets/img/camiseta.png" alt="Foto camiseta">
-          <h2>Camiseta Azul Ancha</h2>
-          <p>30.000 Gs</p>
-          <a href="#" class="button">Comprar</a>
-        </div>
-        <div class="product">
-          <img src="assets/img/camiseta.png" alt="Foto camiseta">
-          <h2>Camiseta Azul Ancha</h2>
-          <p>30.000 Gs</p>
-          <a href="#" class="button">Comprar</a>
-        </div>
-        <div class="product">
-          <img src="assets/img/camiseta.png" alt="Foto camiseta">
-          <h2>Camiseta Azul Ancha</h2>
-          <p>30.000 Gs</p>
-          <a href="#" class="button">Comprar</a>
-        </div>
-      </div>
+require_once "views/layout/footer.php";
 
-    </div>
-
-
-    <!-- PIE DE PÁGINA  -->
-    <footer id="footer">
-      <p>Desarrollado por Celso Ibáñez WEB &copy; <?=date('Y')?></p>
-    </footer>
-  <!-- FIN CONTAINER GENERAL    -->
-  </div>
-</body>
-</html>
+?>
