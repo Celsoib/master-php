@@ -6,8 +6,14 @@ URL -->
 <?php
   // CARGAMOS EL autoload PARA TENER ACCESO A TODOS LOS OBJETOS, A TODAS LAS CLASES
   require_once "autoload.php";
+  require_once "config/parameters.php";
   require_once "views/layout/header.php";
   require_once "views/layout/sidebar.php";
+
+  function show_error(){
+    $error = new errorController();
+    $error->index();
+  }
 
   // LO QUE ESTAMOS HACIENDO AQUÍ EN EL INDEX SE CONOCE COMO CONTROLADOR FRONTAL,
   // ES DECIR, QUE SE ENCARGAN DE CARGAR UN FICHERO, UNA ACCIÓN U OTRA FUNCIÓN QUE ME
@@ -18,9 +24,11 @@ URL -->
   if (isset($_GET['controller'])) {
     // EN EL CASO DE QUE LLEGUE LA URL ME GENERA ESTA VARIABLE
     $nombre_controlador = $_GET['controller'].'Controller';
+  }elseif(!isset($_GET['controller']) && !isset($_GET['action'])){
+    $nombre_controlador = controller_default;
   } else {
     // EN EL CASO DE QUE NO LLEGUE LA URL ME CORTA LA EJECUCIÓN
-    echo 'La página que buscas no existe';
+    show_error();
     exit(); //PARA QUE LO DE ABAJO NO ME EJECUTE MÁS
   }
 
@@ -35,13 +43,16 @@ URL -->
       // SI ES ASÍ LLAMA E INVOCA A ESE MÉTODO
       $action = $_GET['action'];
       $controlador->$action();
-    } else {
+    } elseif(!isset($_GET['controller']) && !isset($_GET['action'])){
+      $action_default = action_default;
+      $controlador->$action_default();
+    }else {
       // EN EL CASO DE QUE NO QUE DIGA QUE LA PÁGINA NO EXISTE
-      echo "La página que buscas no existe 1";
+      show_error();
     }
   // SI NO SE CUMPLE LA PRIMERA CONDICIÓN QUE NOS DIGA TAMBIÉN QUE LA PÁGINA NO EXISTE
   } else {
-    echo "La página que buscas no existe 2";
+    show_error();
   }
 
 require_once "views/layout/footer.php";
