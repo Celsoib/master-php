@@ -11,39 +11,59 @@ class usuarioController {
   }
   public function save() {
     if(isset($_POST)){
-      $usuario = new Usuario();
-      $usuario->setNombre($_POST['nombre']);
-      $usuario->setApellidos($_POST['apellidos']);
-      $usuario->setEmail($_POST['email']);
-      $usuario->setPassword($_POST['password']);
 
-      // var_dump($usuario);
+      // VAMOS A COMPROBAR SI TODOS LOS CAMPOS QUE ME LLEGAN POR post EXISTEN
+      // TAMBIÉN PODEMOS HACER UNA LIBRERÍA QUE NOS VALIDE LOS DATOS, PERO ESO LUEGO
+      // TAREA: REALIZAR UNA VALIDACIÓN MÁS COMPLEJA Y SEGURA
 
-      // EN EL OBJETO YA TENGO TODOS LOS DATOS DEL FORMULARIO GUARDADO, AHORA LQ TENGO QUE HACER ES
-      // LLAMAR AL MÉTODO save PARA GUARDAR TODO LQ YO TENGO EN MI OBJETO GUARDADO, TODOS LOS DATOS DEL
-      // FORMULARIO ME LO GUARDA EN UN REGISTRO EN LA BD
+      $nombre = isset($_POST['nombre']) ? $_POST['nombre'] : false;
+      $apellidos = isset($_POST['apellidos']) ? $_POST['apellidos'] : false;
+      $email = isset($_POST['email']) ? $_POST['email'] : false;
+      $password = isset($_POST['password']) ? $_POST['password'] : false;
 
-      $save = $usuario->save();
+      // COMPROBAMOS SI ALGUNOS DE LOS COMPOS ES false
 
-      // LO QUE HAREMOS SI EL REGISTRO HA SIDO REGISTRADO SATISFACTORIAMENTE SERÁ CREAR UNA
-      // SESIÓN PARA MOSTRARLA LUEGO
+      if($nombre && $apellidos && $email && $password) {
 
-      if($save){
-        // SE SE GUARDÓ CORRECTAMENTE CREAMOS UNA
-        // SESIÓN QUE SE LLAME register Y QUE TENGA COMO VALOR complete
-        $_SESSION['register'] = "complete";
+        // EN EL CASO DE QUE LOS DATOS ESTÉN VALIDADOS CORRECTAMENTE
+        // PROCEDEMOS A ESTABLECER LOS VALORES
+        $usuario = new Usuario();
+        $usuario->setNombre($nombre);
+        $usuario->setApellidos($apellidos);
+        $usuario->setEmail($email);
+        $usuario->setPassword($password);
+
+
+        // EN EL OBJETO YA TENGO TODOS LOS DATOS DEL FORMULARIO GUARDADO, AHORA LQ TENGO QUE HACER ES
+        // LLAMAR AL MÉTODO save PARA GUARDAR TODO LQ YO TENGO EN MI OBJETO GUARDADO, TODOS LOS DATOS DEL
+        // FORMULARIO ME LO GUARDA EN UN REGISTRO EN LA BD
+
+        $save = $usuario->save();
+
+        // LO QUE HAREMOS SI EL REGISTRO HA SIDO REGISTRADO SATISFACTORIAMENTE SERÁ CREAR UNA
+        // SESIÓN PARA MOSTRARLA LUEGO
+
+        if($save){
+          // SE SE GUARDÓ CORRECTAMENTE CREAMOS UNA
+          // SESIÓN QUE SE LLAME register Y QUE TENGA COMO VALOR complete
+          $_SESSION['register'] = "complete";
+        }else {
+          // SI CASO DE QUE NO failed
+          $_SESSION['register'] = "failed";
+        }
       }else {
-        // SI CASO DE QUE NO failed
-        $_SESSION['register'] = "failed1";
+        $_SESSION['register'] = "failed";
       }
+
     }else {
       // SI NO E LLEGA POR POST NADA
-      $_SESSION['register'] = "failed2";
+      $_SESSION['register'] = "failed";
     }
+
     // REDIRIGUIR SIEMPRE, EN CUALQUIER CASO A REGISTRO
     header("Location:".base_url.'usuario/registro');
 
-    // LUEGO EN registro.php MOSTRAMOS LA SESIÓN QUE HEMOS CREADO 
+    // LUEGO EN registro.php MOSTRAMOS LA SESIÓN QUE HEMOS CREADO
 
   }
 }
