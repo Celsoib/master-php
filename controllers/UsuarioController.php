@@ -93,13 +93,22 @@ class usuarioController {
       }else {
         $_SESSION['error_login'] = 'Identificación fallida!!';
       }
-
-
     }
     // DE CUALQUIERA DE LAS FORMAS VAMOS A HACER UNA REDIRECCIÓN A:
+    header("Location:".base_url);
   }
 
-}
+  public function logout(){
+    if(isset($_SESSION['identity'])){
+      unset($_SESSION['identity']);
+    }
+    if(isset($_SESSION['admin'])){
+      unset($_SESSION['admin']);
+    }
+    header("Location:".base_url);
+  }
+
+} //FIN CLASE
 
 
 ?>
