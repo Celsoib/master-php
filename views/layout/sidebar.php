@@ -22,10 +22,17 @@
     <?php endif; ?>
   </div>
   <ul>
-    <li><a href="#">Mis pedidos</a></li>
-    <li><a href="#">Gestionar pedidos</a></li>
-    <li><a href="#">Gestionar categorías</a></li>
-    <li><a href="<?=base_url?>usuario/logout">Cerrar sesión</a></li>
+    <?php if(isset($_SESSION['admin'])): ?>
+      <li><a href="<?=base_url?>categoria/index">Gestionar categorías</a></li>
+      <li><a href="#">Gestionar productos</a></li>
+      <li><a href="#">Gestionar pedidos</a></li>
+    <?php endif; ?>
+    <?php if(isset($_SESSION['identity'])): ?>
+      <li><a href="#">Mis pedidos</a></li>
+      <li><a href="<?=base_url?>usuario/logout">Cerrar sesión</a></li>
+    <?php else:?>
+        <li><a href="<?=base_url?>usuario/registro">Registrate aquí</a></li>
+    <?php endif;?>
   </ul>
 
 </aside>

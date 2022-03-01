@@ -84,11 +84,7 @@ class Usuario {
 
     if($save) {
       $result = true;
-      // echo "result true";
-    } else {
-      echo "result false";
     }
-
     return $result;
   }
 
