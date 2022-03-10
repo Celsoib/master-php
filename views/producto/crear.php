@@ -24,11 +24,11 @@
       <label for="categoria">Categoria</label>
       <?php $categorias = Utils::showCategorias(); ?>
       <select name="categoria">
-        <?php while($cat = $categorias->fetch_object()):?>
+        <?php while($cat = $categorias->fetch_object()): ?>
           <option value="<?=$cat->id?>">
             <?=$cat->nombre?>
           </option>
-        <?php endwhile; ?>
+        <?php endwhile; ?> 
       </select>
     </p>
     <p>
