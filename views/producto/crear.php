@@ -2,8 +2,8 @@
 
 <div class="form_container">
 
-  <form action="<?=base_url?>producto/save" method="POST">
-
+  <form action="<?=base_url?>producto/save" method="POST" enctype="multipart/form-data">
+    <!-- enctype="multipart/form-data" PERMITE ENVIAR FICHERO DENTRO DEL FORMULARIO-->
     <p>
       <label for="nombre">Nombre</label>
       <input type="text" name="nombre">
@@ -28,7 +28,7 @@
           <option value="<?=$cat->id?>">
             <?=$cat->nombre?>
           </option>
-        <?php endwhile; ?> 
+        <?php endwhile; ?>
       </select>
     </p>
     <p>

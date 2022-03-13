@@ -43,6 +43,30 @@ class productoController {
         $producto->setStock($stock);
         $producto->setCategoria_id($categoria);
 
+        // GUARDAR LA IMAGEN
+        // $_FILES[] ES UNA VARIABLE SUPERGLOBAL DONDE SE GUARDAN LOS ARCHIVOS, EL ÍNDICE
+        //DE LA VARIABLE SE DEBE LLAMAR imagen PQ ESE NOMBRE PUSIMOS EN NUESTRO FORMULARIO
+        $file = $_FILES['imagen'];
+
+        // RECOGER EL nombre DEL file PARA GUARDARLO EN LA BD
+        $filename = $file['name'];
+
+        // RECOGER EL TIPO DE FORMATO DE ARCHIVO (jpg, pdf, png, etc)
+        // CADA EXTENSIÓN DE ARCHIVO TIENE UN mimetype DIFERENTE
+        $mimetype = $file['type'];
+
+        // var_dump($file);
+        // die();
+
+        if($mimetype == "image/jpg" || $mimetype == "image/jpeg" || $mimetype == "image/png" || $mimetype == "image/git"){
+
+          if(!is_dir('uploads/images')){
+            mkdir('uploads/images',0777,true);
+          }
+
+          $producto->setImagen($filename);
+          move_uploaded_file($file['tmp_name'], 'uploads/images/'.$filename);
+        }
 
         $save = $producto->save();
         if($save){
