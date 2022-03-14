@@ -82,6 +82,20 @@ class Producto {
     return $productos;
   }
 
+  public function getAllCategory(){
+    $sql = "SELECT p.*, c.nombre AS catnombre FROM productos p
+            INNER JOIN categorias c ON c.id = p.categoria_id
+            WHERE p.categoria_id = {$this->getCategoria_id()}
+            ORDER BY id DESC;";
+             
+    // HAY QUE DARLE UN ALIAS DE catnombre PORQUE EN LA TABLA DE categorias TAMBIÉN HAY UN CAMPO
+    // LLAMADO nombre Y ESO DA AMBIGUEDAD Y GENERA PROBLEMAS A LA HORA DE LISTAR EL NOMBRE
+    // DE LOS PRODUCTOS.
+
+    $productos = $this->db->query($sql);
+    return $productos;
+  }
+
   public function getRandom($limit){
     $productos = $this->db->query("SELECT * FROM productos ORDER BY RAND() LIMIT $limit;");
     return $productos;

@@ -4,7 +4,7 @@
     <?php if($product->imagen != null): ?>
       <img src="<?=base_url?>uploads/images/<?=$product->imagen?>" alt="Foto camiseta">
     <?php else: ?>
-        <img src="assets/img/camiseta.png" alt="Foto camiseta">
+      <img src="<?=base_url?>assets/img/camiseta.png" alt="Foto camiseta">
     <?php endif; ?>
     <h2><?=$product->nombre?></h2>
     <p><?=$product->precio?></p>
