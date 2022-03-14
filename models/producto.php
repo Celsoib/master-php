@@ -82,6 +82,11 @@ class Producto {
     return $productos;
   }
 
+  public function getOne(){
+    $producto = $this->db->query("SELECT * FROM productos WHERE id = {$this->getId()}");
+    return $producto->fetch_object(); //PARA QUE SEA UN OBJETO TOTALMENTE USABLE
+  }
+
   public function save() {
 
     $sql = "INSERT INTO productos VALUES(NULL, {$this->getCategoria_id()},'{$this->getNombre()}','{$this->getDescripcion()}',{$this->getPrecio()},{$this->getStock()},CURDATE(),'{$this->getImagen()}',null);";
@@ -98,6 +103,45 @@ class Producto {
     $result = false;
 
     if($save) {
+      $result = true;
+    }
+
+    return $result;
+  }
+
+  public function edit() {
+
+    $sql = "UPDATE productos SET nombre='{$this->getNombre()}', descripcion='{$this->getDescripcion()}', precio={$this->getPrecio()}, stock={$this->getStock()}, categoria_id={$this->getCategoria_id()}";
+
+    if($this->getImagen() != null){
+      $sql .= ", imagen='{$this->getImagen()}'";
+    }
+
+
+    $sql .= " WHERE id={$this->id};";
+
+    // echo $this->db->error;  		//DEPURAR MYSQL CON ESTE CÓDIGO
+    // var_dump($sql);
+    // die();
+
+    $save = $this->db->query($sql);
+
+    $result = false;
+
+    if($save) {
+      $result = true;
+    }
+
+    return $result;
+  }
+
+  public function delete() {
+    $sql = "DELETE FROM productos WHERE id={$this->id}";
+    $delete = $this->db->query($sql); //ACCESO A EL OBJETO sql Y UTILIZO query PARA PASARLE MI sql
+
+    $result = false;
+
+    if($delete) {
       $result = true;
     }
 

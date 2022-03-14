@@ -44,31 +44,43 @@ class productoController {
         $producto->setCategoria_id($categoria);
 
         // GUARDAR LA IMAGEN
-        // $_FILES[] ES UNA VARIABLE SUPERGLOBAL DONDE SE GUARDAN LOS ARCHIVOS, EL ÍNDICE
-        //DE LA VARIABLE SE DEBE LLAMAR imagen PQ ESE NOMBRE PUSIMOS EN NUESTRO FORMULARIO
-        $file = $_FILES['imagen'];
+        if(isset($_FILES['imagen'])){ //COMPROBAMOS SI LLEGA LA IMAGEN
 
-        // RECOGER EL nombre DEL file PARA GUARDARLO EN LA BD
-        $filename = $file['name'];
+          // $_FILES[] ES UNA VARIABLE SUPERGLOBAL DONDE SE GUARDAN LOS ARCHIVOS, EL ÍNDICE
+          //DE LA VARIABLE SE DEBE LLAMAR imagen PQ ESE NOMBRE PUSIMOS EN NUESTRO FORMULARIO
+          $file = $_FILES['imagen'];
 
-        // RECOGER EL TIPO DE FORMATO DE ARCHIVO (jpg, pdf, png, etc)
-        // CADA EXTENSIÓN DE ARCHIVO TIENE UN mimetype DIFERENTE
-        $mimetype = $file['type'];
+          // RECOGER EL nombre DEL file PARA GUARDARLO EN LA BD
+          $filename = $file['name'];
 
-        // var_dump($file);
-        // die();
+          // RECOGER EL TIPO DE FORMATO DE ARCHIVO (jpg, pdf, png, etc)
+          // CADA EXTENSIÓN DE ARCHIVO TIENE UN mimetype DIFERENTE
+          $mimetype = $file['type'];
 
-        if($mimetype == "image/jpg" || $mimetype == "image/jpeg" || $mimetype == "image/png" || $mimetype == "image/git"){
+          // var_dump($file);
+          // die();
 
-          if(!is_dir('uploads/images')){
-            mkdir('uploads/images',0777,true);
+          if($mimetype == "image/jpg" || $mimetype == "image/jpeg" || $mimetype == "image/png" || $mimetype == "image/git"){
+
+            if(!is_dir('uploads/images')){
+              mkdir('uploads/images',0777,true);
+            }
+
+            $producto->setImagen($filename);
+            move_uploaded_file($file['tmp_name'], 'uploads/images/'.$filename);
           }
-
-          $producto->setImagen($filename);
-          move_uploaded_file($file['tmp_name'], 'uploads/images/'.$filename);
         }
 
-        $save = $producto->save();
+
+        if(isset($_GET['id'])){ //SI A producto/save LE LLEGA UN id EL MÉTODO save VA A SER UNA LLAMADA AL MÉTODO edit
+          $id = $_GET['id'];
+          $producto->setId($id); //LE PASAMOS EL id QUE LLEGA POR url PARA QUE AL EDITAR SOLAMENTE EDITE ESE REGISTRO
+          $save = $producto->edit();
+        }else {
+          $save = $producto->save();
+        }
+
+
         if($save){
           $_SESSION['producto'] = "complete";
         } else {
@@ -81,6 +93,44 @@ class productoController {
       $_SESSION['producto'] = "failed";
     }
     header("Location:".base_url."producto/gestion");
+  }
+
+  public function editar(){
+    Utils::isAdmin();
+    if(isset($_GET['id'])){
+      $id = $_GET['id'];
+      $edit = true;
+
+      $producto = new Producto();
+      $producto->setId($id);
+
+      $pro = $producto->getOne();
+
+      require_once 'views/producto/crear.php';
+
+    }else {
+      header('Location:'.base_url.'producto/gestion');
+    }
+  }
+
+  public function eliminar(){
+    Utils::isAdmin();
+
+    if(isset($_GET['id'])){
+      $id = $_GET['id'];
+      $producto = new Producto();
+      $producto->setId($id);
+
+      $delete = $producto->delete();
+      if($delete){
+        $_SESSION['delete'] = 'complete';
+      }else {
+        $_SESSION['delete'] = 'failed';
+      }
+    }else {
+      $_SESSION['delete'] = 'failed';
+    }
+    header('Location:'.base_url.'producto/gestion');
   }
 
 
