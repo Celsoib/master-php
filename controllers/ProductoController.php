@@ -4,6 +4,11 @@ require_once "models/producto.php";
 
 class productoController {
   public function index() {
+    $producto = new Producto();
+    $productos = $producto->getRandom(6);
+
+    // var_dump($productos->num_rows);
+
     // RENDERIZAR VISTA
     require_once 'views/producto/destacado.php';
   }
