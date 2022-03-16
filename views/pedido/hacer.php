@@ -6,14 +6,14 @@
   <br>
 
   <h3>Dirección para el envío:</h3>
-  <form action="<?=base_url?>pedido/add" method="POST">
+  <form action="<?=base_url.'pedido/add'?>" method="POST">
     <p>
       <label for="provincia">Provincia</label>
       <input type="text" name="provincia" required>
     </p>
     <p>
       <label for="ciudad">Ciudad</label>
-      <input type="text" name="ciudad" required>
+      <input type="text" name="localidad" required>
     </p>
     <p>
       <label for="direccion">Direccion</label>
