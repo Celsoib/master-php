@@ -7,7 +7,7 @@ class pedidoController {
   }
 
   public function add() {
-
+    var_dump($_POST);
   }
 
 }
