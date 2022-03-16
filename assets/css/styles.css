@@ -365,3 +365,24 @@ button {
   background-color: #222222;
   border-top: 4px solid #01b1ea;
 }
+
+/* CARRITO */
+.total-carrito {
+  width: 277px;
+  float: right;
+}
+
+.total-carrito h4 { /*CAMBIÉ POR H3*/
+  display: block;
+  float: left;
+  margin-block-start: 5px;
+}
+
+.button-pedido {
+  display: block;
+  float: right;
+  width: 96px;
+}
+
+
+

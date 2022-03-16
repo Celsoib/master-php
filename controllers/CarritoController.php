@@ -5,7 +5,8 @@ require_once "models/producto.php";
 class carritoController {
   public function index() { //LISTAR CARRITO, MOSTRAR LOS DATOS
 
-    var_dump($_SESSION['carrito']);
+    // var_dump($_SESSION['carrito']);
+    
     $carrito = $_SESSION['carrito'];
 
     require_once 'views/carrito/index.php';
@@ -48,6 +49,7 @@ class carritoController {
         );
       }
     }
+
     header("Location:".base_url."carrito/index");
 
     // VAMOS A HACER UNA CONSULTA PORQUE NECESITAMOS SACAR EL PRODUCTO QUE VAMOS A AÑADIR AL

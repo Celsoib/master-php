@@ -33,3 +33,10 @@
 
   <?php endforeach; ?>
 </table>
+<br>
+
+<div class="total-carrito">
+  <?php $stats = Utils::statsCarrito(); ?>
+  <h4>Precio total: <?=$stats['total']?> Gs</h4> <!-- CAMMIÉ POR H4 -->
+  <a href="" class="button button-pedido">Hacer pedido</a>
+</div>
