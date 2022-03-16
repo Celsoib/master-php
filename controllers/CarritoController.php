@@ -6,8 +6,9 @@ class carritoController {
   public function index() { //LISTAR CARRITO, MOSTRAR LOS DATOS
 
     var_dump($_SESSION['carrito']);
+    $carrito = $_SESSION['carrito'];
 
-    echo "Controlador Carrito, Acción index";
+    require_once 'views/carrito/index.php';
   }
 
   public function add() {
@@ -18,8 +19,16 @@ class carritoController {
     }
 
     if(isset($_SESSION['carrito'])){
+      $counter = 0;
+      foreach($_SESSION['carrito'] as $indice => $elemento){ //RECORREME EL CARRITO Y EN CADA ITERACIÓN SACAME EL ÍNDICE DE ESE ARRAY Y CONSIGUEME EL PRODUCTO O EL ELEMENTO
+        if($elemento['id_producto'] == $producto_id) { //SI LO QUE YA TENGO EN MI CARRITO ES UN PRODUCTO QUE COINCIDE CON EL producto_id QUE ME LLEGA POR LA URL A ESTE MÉTODO, AUMENTA LAS UNIDADES
+          $_SESSION['carrito'][$indice]['unidades']++;
+          $counter++;
+        }
+      }
+    }
 
-    } else {
+    if(!isset($counter) || $counter == 0){
       // CONSEGUIR PRODUCTO
       $producto = new Producto();
       $producto->setId($producto_id);
@@ -27,6 +36,7 @@ class carritoController {
 
       //AHORA LO QUE VAMOS A HACER ES OBTENER LOS DATOS DE ESE OBJETO Y PASARSELO AL CARRITO
 
+      //AÑADIR AL CARRITO
       if(is_object($producto)){
         // EL CARRITO VA A SER UN ARRAY Y AHÍ DENTRO VOY A IR GUARDANDO COSAS
         $_SESSION['carrito'][] = array( //DE ESTA MANERA SE PUEDE AÑADIR UN ELEMENTO AL CARRITO
@@ -38,7 +48,6 @@ class carritoController {
         );
       }
     }
-
     header("Location:".base_url."carrito/index");
 
     // VAMOS A HACER UNA CONSULTA PORQUE NECESITAMOS SACAR EL PRODUCTO QUE VAMOS A AÑADIR AL
