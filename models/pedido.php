@@ -104,6 +104,16 @@ class Pedido {
     return $pedido->fetch_object(); //PARA QUE SEA UN OBJETO TOTALMENTE USABLE
   }
 
+  public function getAllByUser(){
+    $sql = "SELECT p.* FROM pedidos p "
+            ."WHERE p.usuario_id = {$this->getUsuario_id()} "
+            ."ORDER BY id DESC";
+
+    $pedido = $this->db->query($sql);
+
+    return $pedido; //PARA QUE SEA UN OBJETO TOTALMENTE USABLE
+  }
+
 
   // VAMOS A HACER UNA CONSULTA QUE ME SAQUE TODOS LOS PRODUCTOS EN BASE A UN
   // id DE PEDIDO QUE LE VAMOS A PASAR
