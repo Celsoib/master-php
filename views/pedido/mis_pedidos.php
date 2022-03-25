@@ -1,9 +1,17 @@
-<h1>Mis pedidos</h1>
+<?php if(isset($gestion)): ?>
+  <h1>Gestionar pedidos</h1>
+<?php else: ?>
+  <h1>Mis pedidos</h1>
+
+
+<?php endif; ?>
+
 <table>
   <tr>
     <th>N° Pedido</th>
     <th>Coste</th>
     <th>Fecha</th>
+    <th>Estado</th>
   </tr>
 
   <?php
@@ -18,6 +26,9 @@
       </td>
       <td> <!-- EL ELEMENTO NO ES UN OBJETO ES UN ARRAY, ASÍ QUE unidades ES UN ÍNDICE DE ESE ARRAY -->
           <?=$ped->fecha?>
+      </td>
+      <td>
+        <?=Utils::showStatus($ped->estado)?>
       </td>
     </tr>
 

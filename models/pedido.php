@@ -179,8 +179,6 @@ class Pedido {
       // var_dump($insert);
       // $this->db->error;
       // die();
-
-
     }
 
     // AHORA EN CADA ITERACIÓN QUE YO HAGA DEL PRODUCTO, EL CARRITO PUEDE TENER MIL FILAS
@@ -196,6 +194,26 @@ class Pedido {
 
     return $result;
 
+  }
+
+  public function edit() {
+
+    $sql = "UPDATE pedidos SET estado='{$this->getEstado()}'";
+    $sql .= " WHERE id={$this->getId()};";
+
+    // echo $this->db->error;  		//DEPURAR MYSQL CON ESTE CÓDIGO
+    // var_dump($sql);
+    // die();
+
+    $save = $this->db->query($sql);
+
+    $result = false;
+
+    if($save) {
+      $result = true;
+    }
+
+    return $result;
   }
 
 }

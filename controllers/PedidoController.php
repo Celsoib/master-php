@@ -109,6 +109,40 @@ class pedidoController {
 
   }
 
+  public function gestion(){
+    Utils::isAdmin();
+    $gestion = true;
+    //LA VOY A UTILIZAR CON flag PARA MOSTRAR UNA COSA U OTRA DENTRO DE ESA
+    //VISTA A ASÍ REUTILIZO MUCHO CÓDIGO
+
+    $pedido = new Pedido();
+    $pedidos = $pedido->getAll();
+
+
+    require_once "views/pedido/mis_pedidos.php";
+  }
+
+  public function estado() {
+    Utils::isAdmin();
+
+    if(isset($_POST['pedido_id']) && isset($_POST['estado'])){
+      // RECOGER DATOS FORM
+      $id = $_POST['pedido_id'];
+      $estado = $_POST['estado'];
+
+      // UPDATE DEL PEDIDO
+      $pedido = new Pedido();
+      $pedido->setId($id); //SETEO EL id, LE INDICO AL OBJETO CON QUÉ REGISTRO DE LA BD VOY A TRABAJAR DE LA TABLA DE PEDIDO, EN ESTE CASO EL id DEL PEDIDO QUE YO LE PASE POR POST
+      $pedido->setEstado($estado); //LUEGO QUÉ ESTADO LE VAMOS A PONER A ESTE OBJETO PARA ACTUALIARLO
+      $pedido->edit(); //Y POR ÚLTIMO edit PARA QUE NOS HAGA EL UPDATE EN LA BD
+
+      header("Location:".base_url."pedido/detalle&id=".$id);
+
+    }else {
+      header("Location:".base_url);
+    }
+  }
+
 }
 
 

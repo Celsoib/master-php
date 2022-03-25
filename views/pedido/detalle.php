@@ -1,11 +1,26 @@
 <h1>Detalle del pedido</h1>
 
 <?php if(isset($pedido)): ?>
+
+  <?php if(isset($_SESSION['admin'])): ?>
+    <h3>Cambiar el estado del pedido</h3>
+    <form action="<?=base_url?>pedido/estado" method="POST">
+      <input type="hidden" value="<?=$pedido->id?>" name="pedido_id"> <!--  PARA QUE EL id DEL PEDIDO VIEJE POR LA CABECERA Y POR POST  -->
+      <select name="estado">
+        <option value="confirm" <?=$pedido->estado == "confirm" ? 'selected' : '';?>>Pendiente</option> <!-- PARA QUE ME MARQUE LA QUE YO QUIERO O LA QUE ESTÉ GUARDADA EN BD -->
+        <option value="preparation" <?=$pedido->estado == "preparation" ? 'selected' : '';?>>En preparación</option>
+        <option value="ready" <?=$pedido->estado == "ready" ? 'selected' : '';?>>Preparado para enviar</option>
+        <option value="sended" <?=$pedido->estado == "sended" ? 'selected' : '';?>>Enviado</option>
+      </select>
+      <input type="submit" value="Cambiar estado">
+    </form>
+  <?php endif; ?>
   <br>
   <h3>Datos de envío:</h3>
+  Estado: <?=Utils::showStatus($pedido->estado)?> <br>
   Provincia: <?=$pedido->provincia?> <br>
   Ciudad: <?=$pedido->localidad?> <br>
-  Dirección: <?=$pedido->direccion?> <br><br>              
+  Dirección: <?=$pedido->direccion?> <br><br>
 
   <h3>Datos del pedido:</h3>
   Número de pedido: <?=$pedido->id?> <br>
