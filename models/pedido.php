@@ -89,6 +89,46 @@ class Pedido {
     return $producto->fetch_object(); //PARA QUE SEA UN OBJETO TOTALMENTE USABLE
   }
 
+  public function getOneByUser(){
+    $sql = "SELECT p.id, p.coste FROM pedidos p "
+            //."INNER JOIN lineas_pedidos lp ON lp.pedido_id = p.id "
+            ."WHERE p.usuario_id = {$this->getUsuario_id()} "
+            ."ORDER BY id DESC LIMIT 1";
+
+    $pedido = $this->db->query($sql);
+
+    // echo $sql;
+    // echo $this->db->error;
+    // die();
+
+    return $pedido->fetch_object(); //PARA QUE SEA UN OBJETO TOTALMENTE USABLE
+  }
+
+
+  // VAMOS A HACER UNA CONSULTA QUE ME SAQUE TODOS LOS PRODUCTOS EN BASE A UN
+  // id DE PEDIDO QUE LE VAMOS A PASAR
+
+  public function getProductosByPedido($id){
+    // $sql = "SELECT * FROM productos WHERE id IN
+    //           (SELECT producto_id FROM lineas_pedidos WHERE pedido_id = {$id})";
+            // ESA CONSULTA ME VA A SACAR TODOS LOS PRODUCTOS QUE YO TENGA, QUE ESTÁN DENTRO
+            // O QUE EXISTEN DENTRO DE LA TABLA lineas_pedidos CUYO id DEL PEDIDO SEA EL QUE LE
+            // PASAMOS
+
+    // PARA MOSTRAR LA CANTIDAD TENDRÍA QUE HACER UNA CONSULTA DE OTRA FORMA:
+    $sql = "SELECT pr.*, lp.unidades FROM productos pr
+            INNER JOIN lineas_pedidos lp ON lp.producto_id = pr.id
+            WHERE lp.pedido_id = {$id}";
+
+    $productos = $this->db->query($sql);
+
+    return $productos;
+
+    //SACAMOS EL PRODUCTOS QUE VA A CONTENER TODO EL RESULT SET O UNA VARIABLE
+    //QUE ME VIENE DE LA BD
+
+  }
+
   public function save() {
 
     $sql = "INSERT INTO pedidos VALUES(NULL, {$this->getUsuario_id()},'{$this->getProvincia()}','{$this->getLocalidad()}','{$this->getDireccion()}',{$this->getCoste()},'confirm',CURDATE(),CURTIME());";

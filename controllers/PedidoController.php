@@ -54,6 +54,23 @@ class pedidoController {
   }
 
   public function confirmado() {
+
+    if(isset($_SESSION['identity'])){
+      $identity = $_SESSION['identity'];
+      $pedido = new Pedido();
+      $pedido->setUsuario_id($identity->id);
+
+      $pedido = $pedido->getOneByUser();
+
+      $pedido_productos = new Pedido();
+      $productos = $pedido_productos->getProductosByPedido($pedido->id);
+      //ESTE OBJETO $pedido YA TIENTE EL ID DEL PEDIDO CONFIRMADO QUE ES EL ÚLTIMO QUE HEMOS
+      //SACADO. ES EL ÚLTIMO PORQUE EN EL getOneByUser() HACEMOS LA CONSULTA PARA QUE NOS
+      //SAQUE EL ÚLTIMO Y ÚNICO PEDIDO DE ESE USUARIO EN CONCRETO.
+
+    }
+
+
     require_once "views/pedido/confirmado.php";
   }
 
