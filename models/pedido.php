@@ -95,13 +95,6 @@ class Pedido {
 
     $save = $this->db->query($sql);
 
-    // echo $sql;
-    // echo "<br>";
-    // echo $save;
-    // echo "<br>";
-    // echo $this->db->error;
-    // die();
-
     $result = false;
 
     if($save) {
@@ -109,6 +102,50 @@ class Pedido {
     }
 
     return $result;
+  }
+
+  public function save_linea() {
+    // SACAMOS CON UNA CONSULTA EL ÚLTIMO REGISTRO QUE HEMOS INSERTADO, ES
+    // EL ÚLTIMO PEDIDO QUE HEMOS INSERTADO O REGISTRADO EN LA BD, EL ÚLTIMO INSERT
+
+    // LAST_INSERT_ID() SACA LA CLAVE PRIMARIA O EL CAMPO id DEL ÚLTIMO INSERT QUE HEMOS
+    // HECHO, EN ESTE CASO SERÍA LO DEL PEDIDO
+
+    $sql = "SELECT LAST_INSERT_ID() as pedido";
+    $query = $this->db->query($sql);
+    $pedido_id = $query->fetch_object()->pedido; //FETCH_OBJECT PARA SABER QUÉ DATO ME DEVUELVE, ACCEDEMOS A LA PROPIEDAD PEDIDO
+
+    // AHORA TENGO QUE INSERTAR EN LA TABLA DE "LINEA_PEDIDO" LOS PRODUCTOS Y
+    // LA CANTIDAD DE LOS PRODUCTOS, PARA ESO TENGO QUE RECORRER MI CARRITO
+
+    foreach($_SESSION['carrito'] as $elemento){
+      $producto = $elemento['producto'];
+
+      $insert = "INSERT INTO lineas_pedidos VALUES(NULL, {$pedido_id}, {$producto->id}, {$elemento['unidades']})";
+
+      $save = $this->db->query($insert);
+
+      // var_dump($producto);
+      // var_dump($insert);
+      // $this->db->error;
+      // die();
+
+
+    }
+
+    // AHORA EN CADA ITERACIÓN QUE YO HAGA DEL PRODUCTO, EL CARRITO PUEDE TENER MIL FILAS
+    // CON MIL PRODUCTOS PUES YO VOY A RECORRER CADA UNO DE ESAS FILAS Y EN CADA UNA DE ESAS
+    // LO QUE YO VOY A HACER ES INSERTAR UN REGISTRO EN LA TABLA DE LINEAS_PEDIDO CON EL
+    // pedido_id, EL producto_id Y LAS unidades
+
+     $result = false;
+
+    if($save) {
+      $result = true;
+    }
+
+    return $result;
+
   }
 
 }
